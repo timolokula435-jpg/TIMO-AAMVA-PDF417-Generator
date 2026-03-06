@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://app.onecompiler.com/44ey8ct9d_44fj7q52k/# -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIM AAMVA PDF417 GENERATOR</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 25px;
+        }
+        h1 {
+            margin-top: 0;
+            color: #2c3e50;
+            font-weight: 500;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .header-row {
+            display: flex;
+            gap: 20px;
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .header-row .field-group {
+            flex: 1 1 180px;
+        }
+        .field-group {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #34495e;
+            margin-bottom: 3px;
+        }
+        input {
+            padding: 8px 10px;
+            border: 1px solid #bdc3c7;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: border 0.2s;
+        }
+        input:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(52,152,219,0.2);
+        }
+        .three-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .column {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        .column h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-size: 1.2rem;
+            border-bottom: 1px dashed #3498db;
+            padding-bottom: 5px;
+        }
+        .actions {
+            margin: 25px 0 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        button.secondary {
+            background: #95a5a6;
+        }
+        button.secondary:hover {
+            background: #7f8c8d;
+        }
+        .output-section {
+            margin-top: 20px;
+        }
+        textarea {
+            width: 100%;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            padding: 15px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            background: #f8f9fa;
+            resize: vertical;
+            white-space: pre;
+            overflow-x: auto;
+            margin-bottom: 10px;
+        }
+        #outputRaw {
+            height: 80px;
+        }
+        #outputFormatted {
+            height: 400px;
+        }
+        .copy-btn {
+            background: #27ae60;
+            margin-right: 10px;
+        }
+        .copy-btn:hover {
+            background: #2ecc71;
+        }
+        .note {
+            background: #fff9e6;
+            border-left: 4px solid #f39c12;
+            padding: 12px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+        .note code {
+            background: #eee;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        footer {
+            margin-top: 40px;
+            padding: 20px 0;
+            border-top: 1px solid #ddd;
+            font-size: 0.85rem;
+            color: #666;
+            text-align: center;
+        }
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📄 TIM AAMVA PDF417 GENERATOR</h1>
+    <p>Fill in the fields below. The <strong>Formatted</strong> output appears exactly like your sample – each element on its own line, with the RS character (<code></code>) and blank line. The <strong>Raw</strong> output is the continuous string for barcode encoding.</p>
+
+    <!-- Header row: IIN, Version, JurVersion, ZT Data -->
+    <div class="header-row">
+        <div class="field-group">
+            <label>IIN (Issuer ID) *</label>
+            <input type="text" id="iin" value="636015" placeholder="e.g. 636015 (Texas)">
+        </div>
+        <div class="field-group">
+            <label>Version (2 digits)</label>
+            <input type="text" id="version" value="09" placeholder="09">
+        </div>
+        <div class="field-group">
+            <label>Jurisdiction Version (4 digits)</label>
+            <input type="text" id="jurVersion" value="0002" placeholder="0002">
+        </div>
+        <div class="field-group">
+            <label>ZT Data (e.g. ZTAN)</label>
+            <input type="text" id="ztData" value="ZTAN" placeholder="ZTAN">
+        </div>
+    </div>
+
+    <!-- Three columns of fields (grouped as in the image) -->
+    <div class="three-columns">
+        <!-- Column 1 -->
+        <div class="column">
+            <h3>Column 1</h3>
+            <div class="field-group"><label>DCA (Class)</label><input type="text" id="DCA" value="C"></div>
+            <div class="field-group"><label>DBA (Expiration Date) MMDDYYYY</label><input type="text" id="DBA" value="09132028"></div>
+            <div class="field-group"><label>DAC (First Name)</label><input type="text" id="DAC" value="CHANCE"></div>
+            <div class="field-group"><label>DDG (Middle Name Trunc) N/Y</label><input type="text" id="DDG" value="N"></div>
+            <div class="field-group"><label>DBC (Sex) 1=M, 2=F</label><input type="text" id="DBC" value="1"></div>
+            <div class="field-group"><label>DAG (Street Address)</label><input type="text" id="DAG" value="502 OLD BAYOU DR"></div>
+            <div class="field-group"><label>DAK (Postal Code) 5 or 9 digits</label><input type="text" id="DAK" value="775390000"></div>
+            <div class="field-group"><label>DCG (Country)</label><input type="text" id="DCG" value="USA"></div>
+            <div class="field-group"><label>DCL (Race/Ethnicity) e.g. WO</label><input type="text" id="DCL" value="WO"></div>
+            <div class="field-group"><label>DAW (Weight lbs) e.g. 170</label><input type="text" id="DAW" value="170"></div>
+            <div class="field-group"><label>DDK (Organ Donor) 1=yes</label><input type="text" id="DDK" value="1"></div>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="column">
+            <h3>Column 2</h3>
+            <div class="field-group"><label>DCB (Restrictions)</label><input type="text" id="DCB" value="NONE"></div>
+            <div class="field-group"><label>DCS (Last Name)</label><input type="text" id="DCS" value="MAYNARD"></div>
+            <div class="field-group"><label>DDF (First Name Trunc) N/Y</label><input type="text" id="DDF" value="N"></div>
+            <div class="field-group"><label>DBD (Issue Date) MMDDYYYY</label><input type="text" id="DBD" value="08122021"></div>
+            <div class="field-group"><label>DAY (Eye Color) e.g. GRN</label><input type="text" id="DAY" value="GRN"></div>
+            <div class="field-group"><label>DAI (City)</label><input type="text" id="DAI" value="DICKINSON"></div>
+            <div class="field-group"><label>DAQ (Customer ID / License #)</label><input type="text" id="DAQ" value="35673669"></div>
+            <div class="field-group"><label>DAZ (Hair Color) e.g. RED</label><input type="text" id="DAZ" value="RED"></div>
+            <div class="field-group"><label>DDA (Compliance Type)</label><input type="text" id="DDA" value="F"></div>
+            <!-- Note: DDK already in column 1, but image shows it in column 2 as well? We'll keep it only once. -->
+        </div>
+
+        <!-- Column 3 -->
+        <div class="column">
+            <h3>Column 3</h3>
+            <div class="field-group"><label>DCD (Endorsements)</label><input type="text" id="DCD" value="NONE"></div>
+            <div class="field-group"><label>DDE (Last Name Trunc) N/Y</label><input type="text" id="DDE" value="N"></div>
+            <div class="field-group"><label>DAD (Middle Name)</label><input type="text" id="DAD" value="BRIAN"></div>
+            <div class="field-group"><label>DBB (Birth Date) MMDDYYYY</label><input type="text" id="DBB" value="09131996"></div>
+            <div class="field-group"><label>DAU (Height) e.g. 073 in</label><input type="text" id="DAU" value="073 in"></div>
+            <div class="field-group"><label>DAJ (State) 2 letters</label><input type="text" id="DAJ" value="TX"></div>
+            <div class="field-group"><label>DCF (Document Discriminator)</label><input type="text" id="DCF" value="54629180089132517527"></div>
+            <div class="field-group"><label>DCK (Inventory Control #)</label><input type="text" id="DCK" value="10008910715"></div>
+            <div class="field-group"><label>DDB (Date of Latest Version) MMDDYYYY</label><input type="text" id="DDB" value="07162021"></div>
+        </div>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="actions">
+        <button id="generateBtn">🔧 Generate Barcode Strings</button>
+        <button id="sampleBtn" class="secondary">📋 Load Example Data</button>
+    </div>
+
+    <!-- Output areas -->
+    <div class="output-section">
+        <label><strong>Raw output (copy this for barcode encoding):</strong></label>
+        <textarea id="outputRaw" readonly="" placeholder="Raw barcode string (one line)"></textarea>
+        <button id="copyRawBtn" class="copy-btn">📋 Copy Raw String</button>
+
+        <label style="margin-top:20px; display:block;"><strong>Formatted output (exactly like your sample):</strong></label>
+        <textarea id="outputFormatted" readonly="" placeholder="Formatted view with line breaks"></textarea>
+        <button id="copyFormattedBtn" class="copy-btn">📋 Copy Formatted</button>
+        <p style="font-size:0.9rem; color:#555;"><em>If the copy button fails, select the text manually and press Ctrl+C (or Cmd+C).</em></p>
+    </div>
+
+    <div class="note">
+        <strong>⚠️ Note:</strong> The formatted output includes the RS character (<code></code>) on line 2 and a blank line before the final <code>ZTZTAN</code>. The lengths and offsets are calculated dynamically (offset = 10). To see the exact sample numbers, click "Load Example Data".
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div>© <span id="currentYear">2026</span> TIMOTHY LOKULA. All rights reserved. | 
+            <a href="https://app.onecompiler.com/44ey8ct9d_44fj7q52k/#">Terms</a> | <a href="https://app.onecompiler.com/44ey8ct9d_44fj7q52k/#">Privacy</a> | <a href="https://app.onecompiler.com/44ey8ct9d_44fj7q52k/#">Security</a> | 
+            <a href="https://app.onecompiler.com/44ey8ct9d_44fj7q52k/#">Status</a> | <a href="https://app.onecompiler.com/44ey8ct9d_44fj7q52k/#">Docs</a> | <a href="https://app.onecompiler.com/44ey8ct9d_44fj7q52k/#">Contact</a>
+        </div>
+        <div style="margin-top: 10px;">
+            <a href="https://app.onecompiler.com/44ey8ct9d_44fj7q52k/#">Manage cookies</a> | <a href="https://app.onecompiler.com/44ey8ct9d_44fj7q52k/#">Do not share my personal information</a>
+        </div>
+    </footer>
+</div>
+
+<script>
+    (function() {
+        // Order of tags exactly as in the Texas example (for building DL data)
+        const TAG_ORDER = [
+            'DCA', 'DCB', 'DCD', 'DBA', 'DCS', 'DDE', 'DAC', 'DDF', 'DAD', 'DDG',
+            'DBD', 'DBB', 'DBC', 'DAY', 'DAU', 'DAG', 'DAI', 'DAJ', 'DAK', 'DAQ',
+            'DCF', 'DCG', 'DAZ', 'DCK', 'DCL', 'DDA', 'DDB', 'DAW', 'DDK'
+        ];
+
+        // Helper: pad left with zeros
+        function padLeft(num, size) {
+            let s = String(num);
+            while (s.length < size) s = '0' + s;
+            return s;
+        }
+
+        // Build the DL data string by concatenating tag+value for all fields
+        function buildDLData() {
+            let data = '';
+            for (let tag of TAG_ORDER) {
+                const input = document.getElementById(tag);
+                if (input && input.value.trim() !== '') {
+                    data += tag + input.value.trim();
+                }
+            }
+            return data;
+        }
+
+        // Generate the raw continuous string (for barcode)
+        function generateRawString() {
+            // Get header values
+            const iin = document.getElementById('iin').value.trim() || '636015';
+            const version = document.getElementById('version').value.trim() || '09';
+            const jurVer = document.getElementById('jurVersion').value.trim() || '0002';
+            const ztData = document.getElementById('ztData').value.trim() || 'ZTAN';
+
+            // Build DL data
+            const dlData = buildDLData();
+            const dlDataLen = dlData.length;
+            const dlSubfileTotalLen = 10 + dlDataLen; // header (2+5+3) + data
+            const dlHeader = 'DL' + padLeft(dlSubfileTotalLen, 5) + '010'; // offset fixed at 10
+
+            // Build ZT subfile
+            const ztDataLen = ztData.length;
+            const ztSubfileTotalLen = 10 + ztDataLen;
+            const ztHeader = 'ZT' + padLeft(ztSubfileTotalLen, 5) + '010';
+
+            // Full raw string: @ + RS + ANSI header + DL subfile + ZT subfile
+            // RS is ASCII 30, represented as \u001E
+            const fullString = '@\u001E' + 'ANSI ' + iin + version + jurVer + dlHeader + dlData + ztHeader + ztData;
+            return fullString;
+        }
+
+        // Generate the formatted multi-line output exactly like the sample
+        function generateFormattedString() {
+            // Get header values
+            const iin = document.getElementById('iin').value.trim() || '636015';
+            const version = document.getElementById('version').value.trim() || '09';
+            const jurVer = document.getElementById('jurVersion').value.trim() || '0002';
+            const ztData = document.getElementById('ztData').value.trim() || 'ZTAN';
+
+            // Build DL data (all tags concatenated)
+            const dlData = buildDLData();
+            const dlDataLen = dlData.length;
+            const dlSubfileTotalLen = 10 + dlDataLen;
+            const dlHeader = 'DL' + padLeft(dlSubfileTotalLen, 5) + '010';
+
+            // ZT subfile
+            const ztDataLen = ztData.length;
+            const ztSubfileTotalLen = 10 + ztDataLen;
+            const ztHeader = 'ZT' + padLeft(ztSubfileTotalLen, 5) + '010';
+
+            // First tag (DCA) and its value
+            const firstTag = 'DCA' + (document.getElementById('DCA').value.trim() || 'C');
+
+            // Build the rest of the tags (from second onward) each on its own line
+            let restLines = '';
+            for (let i = 1; i < TAG_ORDER.length; i++) {
+                const tag = TAG_ORDER[i];
+                const input = document.getElementById(tag);
+                if (input && input.value.trim() !== '') {
+                    restLines += tag + input.value.trim() + '\n';
+                }
+            }
+
+            // Construct the formatted string
+            let formatted = '@\n';                                   // line 1
+            formatted += '\u001E\n';                                 // line 2 (RS)
+            // line 3: ANSI header + DL header + ZT header + first tag
+            formatted += 'ANSI ' + iin + version + jurVer + dlHeader + ztHeader + firstTag + '\n';
+            formatted += restLines;                                  // all subsequent tags
+            formatted += '\n';                                       // blank line
+            formatted += 'ZT' + ztData;                              // final line (e.g., ZTZTAN)
+
+            return formatted;
+        }
+
+        // Update both output areas
+        function updateOutput() {
+            try {
+                const raw = generateRawString();
+                const formatted = generateFormattedString();
+                document.getElementById('outputRaw').value = raw;
+                document.getElementById('outputFormatted').value = formatted;
+            } catch (e) {
+                document.getElementById('outputRaw').value = 'Error: ' + e.message;
+                document.getElementById('outputFormatted').value = 'Error: ' + e.message;
+            }
+        }
+
+        // Load example data (Texas)
+        function loadExample() {
+            document.getElementById('iin').value = '636015';
+            document.getElementById('version').value = '09';
+            document.getElementById('jurVersion').value = '0002';
+            document.getElementById('ztData').value = 'ZTAN';
+
+            const exampleValues = {
+                DCA: 'C',
+                DCB: 'NONE',
+                DCD: 'NONE',
+                DBA: '09132028',
+                DCS: 'MAYNARD',
+                DDE: 'N',
+                DAC: 'CHANCE',
+                DDF: 'N',
+                DAD: 'BRIAN',
+                DDG: 'N',
+                DBD: '08122021',
+                DBB: '09131996',
+                DBC: '1',
+                DAY: 'GRN',
+                DAU: '073 in',
+                DAG: '502 OLD BAYOU DR',
+                DAI: 'DICKINSON',
+                DAJ: 'TX',
+                DAK: '775390000',
+                DAQ: '35673669',
+                DCF: '54629180089132517527',
+                DCG: 'USA',
+                DAZ: 'RED',
+                DCK: '10008910715',
+                DCL: 'WO',
+                DDA: 'F',
+                DDB: '07162021',
+                DAW: '170',
+                DDK: '1'
+            };
+
+            for (let [tag, value] of Object.entries(exampleValues)) {
+                const input = document.getElementById(tag);
+                if (input) input.value = value;
+            }
+
+            updateOutput();
+        }
+
+        // Generic copy function
+        function copyToClipboard(textarea, messagePrefix) {
+            textarea.select();
+            textarea.setSelectionRange(0, 99999);
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(textarea.value).then(() => {
+                    alert(messagePrefix + ' copied to clipboard!');
+                }).catch(() => {
+                    try {
+                        document.execCommand('copy');
+                        alert(messagePrefix + ' copied to clipboard (fallback method).');
+                    } catch (e) {
+                        alert('Unable to copy automatically. Please select the text and press Ctrl+C (or Cmd+C).');
+                    }
+                });
+            } else {
+                try {
+                    document.execCommand('copy');
+                    alert(messagePrefix + ' copied to clipboard (fallback method).');
+                } catch (e) {
+                    alert('Unable to copy automatically. Please select the text and press Ctrl+C (or Cmd+C).');
+                }
+            }
+        }
+
+        // Specific copy handlers
+        function copyRaw() {
+            copyToClipboard(document.getElementById('outputRaw'), 'Raw barcode string');
+        }
+
+        function copyFormatted() {
+            copyToClipboard(document.getElementById('outputFormatted'), 'Formatted output');
+        }
+
+        // Attach event listeners
+        document.getElementById('generateBtn').addEventListener('click', updateOutput);
+        document.getElementById('sampleBtn').addEventListener('click', loadExample);
+        document.getElementById('copyRawBtn').addEventListener('click', copyRaw);
+        document.getElementById('copyFormattedBtn').addEventListener('click', copyFormatted);
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Initialize with example data on page load
+        window.addEventListener('load', loadExample);
+    })();
+</script>
+<script defer="" src="./v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;b6c6421bde3c48e5ac7f9b8dbecc7bd7&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
+
+</body></html>
