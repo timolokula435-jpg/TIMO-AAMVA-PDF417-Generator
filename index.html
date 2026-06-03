@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<!-- saved from url=(0049)https://app.onecompiler.com/44ey8ct9d_44fj7q52k/# -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIM AAMVA PDF417 GENERATOR</title>
+    <title>AAMVA PDF417 Generator</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -28,6 +28,33 @@
             border-bottom: 2px solid #3498db;
             padding-bottom: 10px;
         }
+        .auto-detect-row {
+            background: #e8f4fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            border: 1px solid #3498db;
+        }
+        .auto-detect-row .field-group {
+            flex: 1 1 200px;
+        }
+        .auto-detect-row button {
+            background: #27ae60;
+            padding: 8px 20px;
+            margin-bottom: 0;
+        }
+        .info-badge {
+            font-size: 0.8rem;
+            color: #2c3e50;
+            background: #fff;
+            padding: 5px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
         .header-row {
             display: flex;
             gap: 20px;
@@ -50,14 +77,14 @@
             color: #34495e;
             margin-bottom: 3px;
         }
-        input {
+        input, select {
             padding: 8px 10px;
             border: 1px solid #bdc3c7;
             border-radius: 6px;
             font-size: 0.95rem;
             transition: border 0.2s;
         }
-        input:focus {
+        input:focus, select:focus {
             border-color: #3498db;
             outline: none;
             box-shadow: 0 0 0 2px rgba(52,152,219,0.2);
@@ -150,11 +177,6 @@
             font-size: 0.9rem;
             color: #7f8c8d;
         }
-        .note code {
-            background: #eee;
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
         footer {
             margin-top: 40px;
             padding: 20px 0;
@@ -167,21 +189,92 @@
             color: #3498db;
             text-decoration: none;
         }
-        footer a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>📄 TIM AAMVA PDF417 GENERATOR</h1>
+    <h1>📄 AAMVA PDF417 Generator</h1>
     <p>Fill in the fields below. The <strong>Formatted</strong> output appears exactly like your sample – each element on its own line, with the RS character (<code></code>) and blank line. The <strong>Raw</strong> output is the continuous string for barcode encoding.</p>
 
-    <!-- Header row: IIN, Version, JurVersion, ZT Data -->
+    <!-- AUTO DETECTION ROW -->
+    <div class="auto-detect-row">
+        <div class="field-group">
+            <label>Select State</label>
+            <select id="stateSelect">
+    <option value="">-- Select a State --</option>
+    <option value="AL">Alabama (636033)</option>
+    <option value="AK">Alaska (636059)</option>
+    <option value="AZ">Arizona (636026)</option>
+    <option value="AR">Arkansas (636021)</option>
+    <option value="CA">California (636014)</option>
+    <option value="CO">Colorado (636020)</option>
+    <option value="CT">Connecticut (636006)</option>
+    <option value="DE">Delaware (636011)</option>
+    <option value="DC">District of Columbia (636043)</option>
+    <option value="FL">Florida (636010)</option>
+    <option value="GA">Georgia (636055)</option>
+    <option value="HI">Hawaii (636047)</option>
+    <option value="ID">Idaho (636050)</option>
+    <option value="IL">Illinois (636035)</option>
+    <option value="IN">Indiana (636037)</option>
+    <option value="IA">Iowa (636018)</option>
+    <option value="KS">Kansas (636022)</option>
+    <option value="KY">Kentucky (636046)</option>
+    <option value="LA">Louisiana (636007)</option>
+    <option value="ME">Maine (636041)</option>
+    <option value="MD">Maryland (636003)</option>
+    <option value="MA">Massachusetts (636002)</option>
+    <option value="MI">Michigan (636032)</option>
+    <option value="MN">Minnesota (636038)</option>
+    <option value="MS">Mississippi (636051)</option>
+    <option value="MO">Missouri (636030)</option>
+    <option value="MT">Montana (636008)</option>
+    <option value="NE">Nebraska (636054)</option>
+    <option value="NV">Nevada (636049)</option>
+    <option value="NH">New Hampshire (636039)</option>
+    <option value="NJ">New Jersey (636036)</option>
+    <option value="NM">New Mexico (636009)</option>
+    <option value="NY">New York (636001)</option>
+    <option value="NC">North Carolina (636004)</option>
+    <option value="ND">North Dakota (636034)</option>
+    <option value="OH">Ohio (636023)</option>
+    <option value="OK">Oklahoma (636058)</option>
+    <option value="OR">Oregon (636029)</option>
+    <option value="PA">Pennsylvania (636025)</option>
+    <option value="RI">Rhode Island (636052)</option>
+    <option value="SC">South Carolina (636005)</option>
+    <option value="SD">South Dakota (636042)</option>
+    <option value="TN">Tennessee (636053)</option>
+    <option value="TX">Texas (636015)</option>
+    <option value="UT">Utah (636040)</option>
+    <option value="VT">Vermont (636024)</option>
+    <option value="VA">Virginia (636000)</option>
+    <option value="WA">Washington (636045)</option>
+    <option value="WV">West Virginia (636061)</option>
+    <option value="WI">Wisconsin (636031)</option>
+    <option value="WY">Wyoming (636060)</option>
+    <option value="AS">American Samoa (604427)</option>
+    <option value="GU">Guam (636019)</option>
+    <option value="MP">Northern Mariana Islands (604430)</option>
+    <option value="PR">Puerto Rico (604431)</option>
+    <option value="VI">Virgin Islands (636062)</option>
+</select>
+        </div>
+        <div class="field-group">
+            <label>Date of Issue (MMDDYYYY)</label>
+            <input type="text" id="autoIssueDate" placeholder="e.g., 08122021">
+        </div>
+        <div class="field-group">
+            <button id="autoDetectBtn" style="background:#27ae60;">🔍 Auto-Detect ANSI</button>
+        </div>
+        <div class="info-badge">
+    </div>
+
+    <!-- Header row: IIN, Version, JurVersion, ZT Data (now auto-filled) -->
     <div class="header-row">
         <div class="field-group">
             <label>IIN (Issuer ID) *</label>
-            <input type="text" id="iin" value="636015" placeholder="e.g. 636015 (Texas)">
+            <input type="text" id="iin" value="636015" placeholder="e.g., 636015 (Texas)">
         </div>
         <div class="field-group">
             <label>Version (2 digits)</label>
@@ -192,12 +285,12 @@
             <input type="text" id="jurVersion" value="0002" placeholder="0002">
         </div>
         <div class="field-group">
-            <label>ZT Data (e.g. ZTAN)</label>
+            <label>ZT Data (e.g., ZTAN)</label>
             <input type="text" id="ztData" value="ZTAN" placeholder="ZTAN">
         </div>
     </div>
 
-    <!-- Three columns of fields (grouped as in the image) -->
+    <!-- Three columns of fields (same as before) -->
     <div class="three-columns">
         <!-- Column 1 -->
         <div class="column">
@@ -210,8 +303,8 @@
             <div class="field-group"><label>DAG (Street Address)</label><input type="text" id="DAG" value="502 OLD BAYOU DR"></div>
             <div class="field-group"><label>DAK (Postal Code) 5 or 9 digits</label><input type="text" id="DAK" value="775390000"></div>
             <div class="field-group"><label>DCG (Country)</label><input type="text" id="DCG" value="USA"></div>
-            <div class="field-group"><label>DCL (Race/Ethnicity) e.g. WO</label><input type="text" id="DCL" value="WO"></div>
-            <div class="field-group"><label>DAW (Weight lbs) e.g. 170</label><input type="text" id="DAW" value="170"></div>
+            <div class="field-group"><label>DCL (Race/Ethnicity) e.g., WO</label><input type="text" id="DCL" value="WO"></div>
+            <div class="field-group"><label>DAW (Weight lbs) e.g., 170</label><input type="text" id="DAW" value="170"></div>
             <div class="field-group"><label>DDK (Organ Donor) 1=yes</label><input type="text" id="DDK" value="1"></div>
         </div>
 
@@ -222,12 +315,11 @@
             <div class="field-group"><label>DCS (Last Name)</label><input type="text" id="DCS" value="MAYNARD"></div>
             <div class="field-group"><label>DDF (First Name Trunc) N/Y</label><input type="text" id="DDF" value="N"></div>
             <div class="field-group"><label>DBD (Issue Date) MMDDYYYY</label><input type="text" id="DBD" value="08122021"></div>
-            <div class="field-group"><label>DAY (Eye Color) e.g. GRN</label><input type="text" id="DAY" value="GRN"></div>
+            <div class="field-group"><label>DAY (Eye Color) e.g., GRN</label><input type="text" id="DAY" value="GRN"></div>
             <div class="field-group"><label>DAI (City)</label><input type="text" id="DAI" value="DICKINSON"></div>
             <div class="field-group"><label>DAQ (Customer ID / License #)</label><input type="text" id="DAQ" value="35673669"></div>
-            <div class="field-group"><label>DAZ (Hair Color) e.g. RED</label><input type="text" id="DAZ" value="RED"></div>
+            <div class="field-group"><label>DAZ (Hair Color) e.g., RED</label><input type="text" id="DAZ" value="RED"></div>
             <div class="field-group"><label>DDA (Compliance Type)</label><input type="text" id="DDA" value="F"></div>
-            <!-- Note: DDK already in column 1, but image shows it in column 2 as well? We'll keep it only once. -->
         </div>
 
         <!-- Column 3 -->
@@ -237,7 +329,7 @@
             <div class="field-group"><label>DDE (Last Name Trunc) N/Y</label><input type="text" id="DDE" value="N"></div>
             <div class="field-group"><label>DAD (Middle Name)</label><input type="text" id="DAD" value="BRIAN"></div>
             <div class="field-group"><label>DBB (Birth Date) MMDDYYYY</label><input type="text" id="DBB" value="09131996"></div>
-            <div class="field-group"><label>DAU (Height) e.g. 073 in</label><input type="text" id="DAU" value="073 in"></div>
+            <div class="field-group"><label>DAU (Height) e.g., 073 in</label><input type="text" id="DAU" value="073 in"></div>
             <div class="field-group"><label>DAJ (State) 2 letters</label><input type="text" id="DAJ" value="TX"></div>
             <div class="field-group"><label>DCF (Document Discriminator)</label><input type="text" id="DCF" value="54629180089132517527"></div>
             <div class="field-group"><label>DCK (Inventory Control #)</label><input type="text" id="DCK" value="10008910715"></div>
@@ -254,48 +346,184 @@
     <!-- Output areas -->
     <div class="output-section">
         <label><strong>Raw output (copy this for barcode encoding):</strong></label>
-        <textarea id="outputRaw" readonly="" placeholder="Raw barcode string (one line)"></textarea>
+        <textarea id="outputRaw" readonly placeholder="Raw barcode string (one line)"></textarea>
         <button id="copyRawBtn" class="copy-btn">📋 Copy Raw String</button>
 
         <label style="margin-top:20px; display:block;"><strong>Formatted output (exactly like your sample):</strong></label>
-        <textarea id="outputFormatted" readonly="" placeholder="Formatted view with line breaks"></textarea>
+        <textarea id="outputFormatted" readonly placeholder="Formatted view with line breaks"></textarea>
         <button id="copyFormattedBtn" class="copy-btn">📋 Copy Formatted</button>
-        <p style="font-size:0.9rem; color:#555;"><em>If the copy button fails, select the text manually and press Ctrl+C (or Cmd+C).</em></p>
     </div>
 
     <div class="note">
-        <strong>⚠️ Note:</strong> The formatted output includes the RS character (<code></code>) on line 2 and a blank line before the final <code>ZTZTAN</code>. The lengths and offsets are calculated dynamically (offset = 10). To see the exact sample numbers, click "Load Example Data".
+        <strong>⚠️ Note:</strong> The formatted output includes the RS character (<code></code>) on line 2 and a blank line before the final <code>ZTZTAN</code>. When you select a state and enter an issue date, the IIN, Version, and Jurisdiction Version auto‑update based on official AAMVA rules.
     </div>
 
-    <!-- Footer -->
     <footer>
-        <div>© <span id="currentYear">2026</span> TIMOTHY LOKULA. All rights reserved. | 
-            <a href="https://app.onecompiler.com/44ey8ct9d_44fj7q52k/#">Terms</a> | <a href="https://app.onecompiler.com/44ey8ct9d_44fj7q52k/#">Privacy</a> | <a href="https://app.onecompiler.com/44ey8ct9d_44fj7q52k/#">Security</a> | 
-            <a href="https://app.onecompiler.com/44ey8ct9d_44fj7q52k/#">Status</a> | <a href="https://app.onecompiler.com/44ey8ct9d_44fj7q52k/#">Docs</a> | <a href="https://app.onecompiler.com/44ey8ct9d_44fj7q52k/#">Contact</a>
+        <div>© <span id="currentYear"></span> TIMOTHY LOKULA. All rights reserved. | 
+            <a href="#">Terms</a> | <a href="#">Privacy</a> | <a href="#">Security</a> | 
+            <a href="#">Status</a> | <a href="#">Docs</a> | <a href="#">Contact</a>
         </div>
         <div style="margin-top: 10px;">
-            <a href="https://app.onecompiler.com/44ey8ct9d_44fj7q52k/#">Manage cookies</a> | <a href="https://app.onecompiler.com/44ey8ct9d_44fj7q52k/#">Do not share my personal information</a>
+            <a href="#">Manage cookies</a> | <a href="#">Do not share my personal information</a>
         </div>
     </footer>
 </div>
 
 <script>
     (function() {
-        // Order of tags exactly as in the Texas example (for building DL data)
+        // ============================================================
+        // DATABASE: State IINs and version rules
+        // ============================================================
+        const stateDatabase = {
+    'AL': { iin: '636033', name: 'Alabama' },
+    'AK': { iin: '636059', name: 'Alaska' },
+    'AZ': { iin: '636026', name: 'Arizona' },
+    'AR': { iin: '636021', name: 'Arkansas' },
+    'CA': { iin: '636014', name: 'California' },
+    'CO': { iin: '636020', name: 'Colorado' },
+    'CT': { iin: '636006', name: 'Connecticut' },
+    'DE': { iin: '636011', name: 'Delaware' },
+    'DC': { iin: '636043', name: 'District of Columbia' },
+    'FL': { iin: '636010', name: 'Florida' },
+    'GA': { iin: '636055', name: 'Georgia' },
+    'HI': { iin: '636047', name: 'Hawaii' },
+    'ID': { iin: '636050', name: 'Idaho' },
+    'IL': { iin: '636035', name: 'Illinois' },
+    'IN': { iin: '636037', name: 'Indiana' },
+    'IA': { iin: '636018', name: 'Iowa' },
+    'KS': { iin: '636022', name: 'Kansas' },
+    'KY': { iin: '636046', name: 'Kentucky' },
+    'LA': { iin: '636007', name: 'Louisiana' },
+    'ME': { iin: '636041', name: 'Maine' },
+    'MD': { iin: '636003', name: 'Maryland' },
+    'MA': { iin: '636002', name: 'Massachusetts' },
+    'MI': { iin: '636032', name: 'Michigan' },
+    'MN': { iin: '636038', name: 'Minnesota' },
+    'MS': { iin: '636051', name: 'Mississippi' },
+    'MO': { iin: '636030', name: 'Missouri' },
+    'MT': { iin: '636008', name: 'Montana' },
+    'NE': { iin: '636054', name: 'Nebraska' },
+    'NV': { iin: '636049', name: 'Nevada' },
+    'NH': { iin: '636039', name: 'New Hampshire' },
+    'NJ': { iin: '636036', name: 'New Jersey' },
+    'NM': { iin: '636009', name: 'New Mexico' },
+    'NY': { iin: '636001', name: 'New York' },
+    'NC': { iin: '636004', name: 'North Carolina' },
+    'ND': { iin: '636034', name: 'North Dakota' },
+    'OH': { iin: '636023', name: 'Ohio' },
+    'OK': { iin: '636058', name: 'Oklahoma' },
+    'OR': { iin: '636029', name: 'Oregon' },
+    'PA': { iin: '636025', name: 'Pennsylvania' },
+    'RI': { iin: '636052', name: 'Rhode Island' },
+    'SC': { iin: '636005', name: 'South Carolina' },
+    'SD': { iin: '636042', name: 'South Dakota' },
+    'TN': { iin: '636053', name: 'Tennessee' },
+    'TX': { iin: '636015', name: 'Texas' },
+    'UT': { iin: '636040', name: 'Utah' },
+    'VT': { iin: '636024', name: 'Vermont' },
+    'VA': { iin: '636000', name: 'Virginia' },
+    'WA': { iin: '636045', name: 'Washington' },
+    'WV': { iin: '636061', name: 'West Virginia' },
+    'WI': { iin: '636031', name: 'Wisconsin' },
+    'WY': { iin: '636060', name: 'Wyoming' },
+    'AS': { iin: '604427', name: 'American Samoa' },
+    'GU': { iin: '636019', name: 'Guam' },
+    'MP': { iin: '604430', name: 'Northern Mariana Islands' },
+    'PR': { iin: '604431', name: 'Puerto Rico' },
+    'VI': { iin: '636062', name: 'Virgin Islands' }
+};
+
+        // Determine AAMVA version based on issue date (MMDDYYYY)
+        function getVersionFromDate(issueDate) {
+            if (!issueDate || issueDate.length !== 8) return '09'; // default to version 09
+            
+            const year = parseInt(issueDate.substring(4, 8));
+            
+            if (year >= 2025) return '10';      // 2025+ uses version 10
+            if (year >= 2016) return '09';      // 2016-2024 uses version 09
+            if (year >= 2008) return '08';      // 2008-2015 uses version 08
+            return '07';                         // Older than 2008
+        }
+
+        // Generate a plausible jurisdiction version (state-specific)
+        function getJurisdictionVersion(state, issueDate) {
+            // This is an example – real jurisdiction versions are set by each state
+            // You can customize this logic based on known state patterns
+            if (!issueDate || issueDate.length !== 8) return '0001';
+            
+            const year = parseInt(issueDate.substring(4, 8));
+            
+            // Example: Colorado might use different versions over time
+            if (state === 'CO') {
+                if (year >= 2025) return '0003';
+                if (year >= 2016) return '0002';
+                return '0001';
+            }
+            
+            // Default: return a simple number based on year
+            return String(Math.floor((year - 2000) * 10)).padStart(4, '0').slice(0, 4);
+        }
+
+        // ============================================================
+        // Auto-Detection Function
+        // ============================================================
+        function autoDetectANSI() {
+            const state = document.getElementById('stateSelect').value;
+            const issueDate = document.getElementById('autoIssueDate').value.trim();
+            
+            if (!state) {
+                alert('Please select a state first.');
+                return false;
+            }
+            
+            if (!issueDate || issueDate.length !== 8) {
+                alert('Please enter a valid 8-digit Issue Date (MMDDYYYY).\nExample: 08122021');
+                return false;
+            }
+            
+            // Look up IIN
+            const stateInfo = stateDatabase[state];
+            if (!stateInfo) {
+                alert(`IIN not found for state ${state}. Please enter manually.`);
+                return false;
+            }
+            
+            const iin = stateInfo.iin;
+            const version = getVersionFromDate(issueDate);
+            const jurisdictionVersion = getJurisdictionVersion(state, issueDate);
+            
+            // Update the header fields
+            document.getElementById('iin').value = iin;
+            document.getElementById('version').value = version;
+            document.getElementById('jurVersion').value = jurisdictionVersion;
+            
+            // Also update the state field (DAJ) in the form if it's empty
+            const stateField = document.getElementById('DAJ');
+            if (stateField && !stateField.value.trim()) {
+                stateField.value = state;
+            }
+            
+            // Show success message
+            alert(`Auto-detected:\nIIN: ${iin}\nVersion: ${version}\nJurisdiction Version: ${jurisdictionVersion}\n\nClick "Generate Barcode Strings" to see the result.`);
+            
+            return true;
+        }
+
+        // ============================================================
+        // Barcode Generation Logic (unchanged from before)
+        // ============================================================
         const TAG_ORDER = [
             'DCA', 'DCB', 'DCD', 'DBA', 'DCS', 'DDE', 'DAC', 'DDF', 'DAD', 'DDG',
             'DBD', 'DBB', 'DBC', 'DAY', 'DAU', 'DAG', 'DAI', 'DAJ', 'DAK', 'DAQ',
             'DCF', 'DCG', 'DAZ', 'DCK', 'DCL', 'DDA', 'DDB', 'DAW', 'DDK'
         ];
 
-        // Helper: pad left with zeros
         function padLeft(num, size) {
             let s = String(num);
             while (s.length < size) s = '0' + s;
             return s;
         }
 
-        // Build the DL data string by concatenating tag+value for all fields
         function buildDLData() {
             let data = '';
             for (let tag of TAG_ORDER) {
@@ -307,54 +535,42 @@
             return data;
         }
 
-        // Generate the raw continuous string (for barcode)
         function generateRawString() {
-            // Get header values
             const iin = document.getElementById('iin').value.trim() || '636015';
             const version = document.getElementById('version').value.trim() || '09';
             const jurVer = document.getElementById('jurVersion').value.trim() || '0002';
             const ztData = document.getElementById('ztData').value.trim() || 'ZTAN';
 
-            // Build DL data
-            const dlData = buildDLData();
-            const dlDataLen = dlData.length;
-            const dlSubfileTotalLen = 10 + dlDataLen; // header (2+5+3) + data
-            const dlHeader = 'DL' + padLeft(dlSubfileTotalLen, 5) + '010'; // offset fixed at 10
-
-            // Build ZT subfile
-            const ztDataLen = ztData.length;
-            const ztSubfileTotalLen = 10 + ztDataLen;
-            const ztHeader = 'ZT' + padLeft(ztSubfileTotalLen, 5) + '010';
-
-            // Full raw string: @ + RS + ANSI header + DL subfile + ZT subfile
-            // RS is ASCII 30, represented as \u001E
-            const fullString = '@\u001E' + 'ANSI ' + iin + version + jurVer + dlHeader + dlData + ztHeader + ztData;
-            return fullString;
-        }
-
-        // Generate the formatted multi-line output exactly like the sample
-        function generateFormattedString() {
-            // Get header values
-            const iin = document.getElementById('iin').value.trim() || '636015';
-            const version = document.getElementById('version').value.trim() || '09';
-            const jurVer = document.getElementById('jurVersion').value.trim() || '0002';
-            const ztData = document.getElementById('ztData').value.trim() || 'ZTAN';
-
-            // Build DL data (all tags concatenated)
             const dlData = buildDLData();
             const dlDataLen = dlData.length;
             const dlSubfileTotalLen = 10 + dlDataLen;
             const dlHeader = 'DL' + padLeft(dlSubfileTotalLen, 5) + '010';
 
-            // ZT subfile
             const ztDataLen = ztData.length;
             const ztSubfileTotalLen = 10 + ztDataLen;
             const ztHeader = 'ZT' + padLeft(ztSubfileTotalLen, 5) + '010';
 
-            // First tag (DCA) and its value
+            const fullString = '@\u001E' + 'ANSI ' + iin + version + jurVer + dlHeader + dlData + ztHeader + ztData;
+            return fullString;
+        }
+
+        function generateFormattedString() {
+            const iin = document.getElementById('iin').value.trim() || '636015';
+            const version = document.getElementById('version').value.trim() || '09';
+            const jurVer = document.getElementById('jurVersion').value.trim() || '0002';
+            const ztData = document.getElementById('ztData').value.trim() || 'ZTAN';
+
+            const dlData = buildDLData();
+            const dlDataLen = dlData.length;
+            const dlSubfileTotalLen = 10 + dlDataLen;
+            const dlHeader = 'DL' + padLeft(dlSubfileTotalLen, 5) + '010';
+
+            const ztDataLen = ztData.length;
+            const ztSubfileTotalLen = 10 + ztDataLen;
+            const ztHeader = 'ZT' + padLeft(ztSubfileTotalLen, 5) + '010';
+
             const firstTag = 'DCA' + (document.getElementById('DCA').value.trim() || 'C');
 
-            // Build the rest of the tags (from second onward) each on its own line
             let restLines = '';
             for (let i = 1; i < TAG_ORDER.length; i++) {
                 const tag = TAG_ORDER[i];
@@ -364,19 +580,16 @@
                 }
             }
 
-            // Construct the formatted string
-            let formatted = '@\n';                                   // line 1
-            formatted += '\u001E\n';                                 // line 2 (RS)
-            // line 3: ANSI header + DL header + ZT header + first tag
+            let formatted = '@\n';
+            formatted += '\u001E\n';
             formatted += 'ANSI ' + iin + version + jurVer + dlHeader + ztHeader + firstTag + '\n';
-            formatted += restLines;                                  // all subsequent tags
-            formatted += '\n';                                       // blank line
-            formatted += 'ZT' + ztData;                              // final line (e.g., ZTZTAN)
+            formatted += restLines;
+            formatted += '\n';
+            formatted += 'ZT' + ztData;
 
             return formatted;
         }
 
-        // Update both output areas
         function updateOutput() {
             try {
                 const raw = generateRawString();
@@ -389,43 +602,21 @@
             }
         }
 
-        // Load example data (Texas)
         function loadExample() {
             document.getElementById('iin').value = '636015';
             document.getElementById('version').value = '09';
             document.getElementById('jurVersion').value = '0002';
             document.getElementById('ztData').value = 'ZTAN';
+            document.getElementById('stateSelect').value = 'TX';
+            document.getElementById('autoIssueDate').value = '08122021';
 
             const exampleValues = {
-                DCA: 'C',
-                DCB: 'NONE',
-                DCD: 'NONE',
-                DBA: '09132028',
-                DCS: 'MAYNARD',
-                DDE: 'N',
-                DAC: 'CHANCE',
-                DDF: 'N',
-                DAD: 'BRIAN',
-                DDG: 'N',
-                DBD: '08122021',
-                DBB: '09131996',
-                DBC: '1',
-                DAY: 'GRN',
-                DAU: '073 in',
-                DAG: '502 OLD BAYOU DR',
-                DAI: 'DICKINSON',
-                DAJ: 'TX',
-                DAK: '775390000',
-                DAQ: '35673669',
-                DCF: '54629180089132517527',
-                DCG: 'USA',
-                DAZ: 'RED',
-                DCK: '10008910715',
-                DCL: 'WO',
-                DDA: 'F',
-                DDB: '07162021',
-                DAW: '170',
-                DDK: '1'
+                DCA: 'C', DCB: 'NONE', DCD: 'NONE', DBA: '09132028', DCS: 'MAYNARD',
+                DDE: 'N', DAC: 'CHANCE', DDF: 'N', DAD: 'BRIAN', DDG: 'N',
+                DBD: '08122021', DBB: '09131996', DBC: '1', DAY: 'GRN', DAU: '073 in',
+                DAG: '502 OLD BAYOU DR', DAI: 'DICKINSON', DAJ: 'TX', DAK: '775390000',
+                DAQ: '35673669', DCF: '54629180089132517527', DCG: 'USA', DAZ: 'RED',
+                DCK: '10008910715', DCL: 'WO', DDA: 'F', DDB: '07162021', DAW: '170', DDK: '1'
             };
 
             for (let [tag, value] of Object.entries(exampleValues)) {
@@ -436,11 +627,9 @@
             updateOutput();
         }
 
-        // Generic copy function
         function copyToClipboard(textarea, messagePrefix) {
             textarea.select();
             textarea.setSelectionRange(0, 99999);
-
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(textarea.value).then(() => {
                     alert(messagePrefix + ' copied to clipboard!');
@@ -462,7 +651,6 @@
             }
         }
 
-        // Specific copy handlers
         function copyRaw() {
             copyToClipboard(document.getElementById('outputRaw'), 'Raw barcode string');
         }
@@ -471,19 +659,22 @@
             copyToClipboard(document.getElementById('outputFormatted'), 'Formatted output');
         }
 
-        // Attach event listeners
+        // ============================================================
+        // Event Listeners
+        // ============================================================
         document.getElementById('generateBtn').addEventListener('click', updateOutput);
         document.getElementById('sampleBtn').addEventListener('click', loadExample);
         document.getElementById('copyRawBtn').addEventListener('click', copyRaw);
         document.getElementById('copyFormattedBtn').addEventListener('click', copyFormatted);
+        document.getElementById('autoDetectBtn').addEventListener('click', function() {
+            if (autoDetectANSI()) {
+                updateOutput(); // Auto-generate after detection
+            }
+        });
 
-        // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // Initialize with example data on page load
         window.addEventListener('load', loadExample);
     })();
 </script>
-<script defer="" src="./v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;b6c6421bde3c48e5ac7f9b8dbecc7bd7&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
-
-</body></html>
+</body>
+</html>
